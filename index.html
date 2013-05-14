@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+	    <title>Whiteboard</title>
+	    <style type="text/css">
+        	html, body {
+	            padding: 0px;
+        	    margin: 0px;
+	            overflow: hidden;
+	        }
+		#whiteboard {
+	            position: absolute;
+        	    top: 0px;
+	            left: 0px;
+	            z-index: 100;
+        	}
+		.pencil{
+			cursor:'image/pencil.gif';
+		}
+	   </style>
+	</head>
+	<script src='js/jquery-1.9.1.min.js' type='text/javascript'></script>		
+        <script type='text/javascript' src='js/pencil.js'></script>
+        <script type='text/javascript' src='js/eraser.js'></script>
+        <script type='text/javascript' src='js/rectangle.js'></script>
+        <script type='text/javascript' src='js/oval.js'></script>
+        <script type='text/javascript' src='js/line.js'></script>
+	<script src='js/wb_event.js' type='text/javascript' ></script>	
+	<script src='js/whiteboard.js' type='text/javascript' ></script>		
+	<script  type='text/javascript'>
+		$(document).ready(function(){
+		    whiteboard.init({
+			'canvas_ele'  :'white_board',
+			'pencil_color':'pencil_color',
+                        'pencil_ele'  :'pencil',
+			'eraser'      :'eraser',
+                        'rectangle'   :'rectangle_button',
+                        'oval'        :'oval_button',
+                        'line'        :'straight_line',
+                        'pencil_size' :'pencil_size'
+ 	   	    }
+		)});
+	</script>		
+	<body>
+		<div>
+			<span>Color: </span>
+			<select type= 'text' id ='pencil_color'  value='black'>
+                           <option value='black'>Black</option>
+                           <option value='blue'>Blue</option>
+                           <option value='yellow'>Yellow</option>
+                           <option value='red'>Red</option>
+                           <option value='brown'>Brown</option>
+                           <option value='purple'>Purple</option>
+                           <option value='turquoise'>Turquoise</option>
+                        </select>
+                        <span>
+                              Pencil Size:
+                        </span>
+                        <select type= 'text' id ='pencil_size'  value='Pencil'>
+                           <option value='2'>Small</option>
+                           <option value='6'>Normal</option>
+                           <option value='10'>Large</option>
+                           <option value='16'>Huge</option>
+                        </select>
+                        <input type= 'button' id ='pencil'  value='Pencil'></input>
+			<input type= 'button' id ='eraser'  value='Eraser'></input>
+                        <input type= 'button' id ='straight_line'  value='Straight Line'></input>
+                        <input type= 'button' id ='rectangle_button'  value='Rectangle'></input>
+                        <input type= 'button' id ='oval_button'  value='Oval'></input>
+		</div>
+		 <canvas id="white_board" height="480" width="640" style="border: 1px solid black;"></canvas>
+	</body>
+</html>
+
+
+

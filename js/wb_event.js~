@@ -1,0 +1,51 @@
+var wb_event = {
+	canvasContext:false,
+	canvasEle : false,
+	color:'black',
+	x_cor:false,
+	y_cor:false,
+	init:function (config){
+		var ele            = this;
+		this.canvasEle     = config.canvas_ele;
+		this.canvasContext = document.getElementById(this.canvasEle).getContext('2d');	
+		this.color = ($('#'+config.pencil).val()=='')?this.color:$('#'+config.pencil).val();
+		this.canvasContext.fillStyle = this.color;
+		this.canvasContext.beginPath();
+
+	  	$('#'+this.canvasEle).bind('mouseup',this.mouseUp.bind(this)).bind('mousedown',this.mouseDown.bind(this)).bind('mousemove',this.mouseMove.bind(this));	
+	//	$('#'+this.canvasEle).mouseup(this.mouseUp).mousedown(this.mouseDown).mousemove(this.mouseUp);
+	},
+	mouseUp:function(e){
+		this.x_cor=null;
+		this.y_cor=null;
+	},
+	mouseDown:function(e){
+		this.x_cor=e.clientX;
+		this.y_cor=e.clientY;
+		this.canvasContext.moveTo(this.x_cor,this.y_cor);
+	},
+	mouseMove:function(e){
+		this.canvasContext.lineTo(this.x_cor,this.y_cor);
+		this.canvasContext.stroke();
+		this.canvasContext.moveTo(this.x_cor,this.y_cor);
+	},
+	getX: function(e) {
+	    var cssx = (e.clientX - $('#'+this.canvasEle).offset().left);
+	    var xrel = this.getRelative().width;
+	    var canvasx = cssx * xrel;
+	    return canvasx;
+	},
+	getY: function(e) {
+	    var cssy = (e.clientY - $('#'+this.canvasEle).offset().top);
+	    var yrel = this.getRelative().height;
+	    var canvasy = cssy * yrel;
+	    return canvasy;
+	},
+	 getRelative: function() {
+	    return {width:$('#'+this.canvasEle).width/$('#'+this.canvasEle).offsetWidth,
+		    height: $('#'+this.canvasEle).height/$('#'+this.canvasEle).offsetHeight};
+    },
+	
+	
+	
+}

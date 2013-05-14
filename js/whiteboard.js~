@@ -1,0 +1,14 @@
+var whiteboard = {
+	
+	canvasContext:false,
+	canvasElement:false,
+	init:function(canvas_ele){
+
+		if($('#'+canvas_ele).length === 0){
+			alert('Canvas element not defined');
+		}
+	        this.canvasElement = '#'+canvas_ele;	
+		this.canvasContext = document.getElementById(canvas_ele).getContext('2d');
+		$(this.canvasElement).mousedown().mouseUp().mousemove();
+	}
+}
